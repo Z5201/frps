@@ -1,35 +1,48 @@
+# 监听所有网卡
 bindAddr = "0.0.0.0"
 bindPort = 7000
-#kcpBindPort = 7000
-quicBindPort = 7000
 
+# QUIC 协议监听端口（不能与 bindPort 相同，建议改成 7001）
+quicBindPort = 7001
+
+# 虚拟主机端口（HTTP/HTTPS）
 vhostHTTPPort = 80
 vhostHTTPSPort = 443
 
+# 连接池和多路复用
 transport.maxPoolCount = 2000
 transport.tcpMux = true
 transport.tcpMuxKeepaliveInterval = 60
 transport.tcpKeepalive = 7200
 transport.tls.force = false
 
+# Web 管理界面
 webServer.addr = "0.0.0.0"
 webServer.port = 7500
 webServer.user = "admin"
 webServer.password = "admin"
 webServer.pprofEnable = false
 
+# 日志配置
 log.to = "./frps.log"
 log.level = "info"
 log.maxDays = 3
 log.disablePrintColor = false
 
+# 身份验证
 auth.method = "token"
 auth.token = "12345678"
 
+# 开放端口范围
 allowPorts = [
   { start = 10001, end = 50000 }
 ]
 
+# 每个客户端最多允许端口数
 maxPortsPerClient = 8
+
+# UDP 包大小
 udpPacketSize = 1500
+
+# NAT 穿透数据保留时长（单位小时）
 natholeAnalysisDataReserveHours = 168
